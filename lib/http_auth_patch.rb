@@ -29,7 +29,3 @@ module HTTPAuthPatch
   end
 end
 
-Dispatcher.to_prepare do
-  #include our code
-  ApplicationController.send(:include, HTTPAuthPatch)
-end
