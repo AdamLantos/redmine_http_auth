@@ -1,8 +1,52 @@
 HTTP Authentication plugin for Redmine
 =======
 
-This plugin enables an optional HTTP Authentication method in the
-redmine project management tool.
+This plugin enables an optional HTTP authentication method in the Redmine
+project management tool.
+
+If the REMOTE_USER server environment variable is set, an attempt is
+made to look up the matching local user account and log in. If the user
+was logged in using HTTP authentication, and the REMOTE_USER gets unset
+(ie. the user was logged out by the container), the user will be logged
+out from their Redmine session, too.
+
+This module does not disable the form-based login unless HTTP authentication
+credentials are available, in which case the username from the environment
+will override the form-based login.
+
+
+Important notes
+=======
+
+Please note that your users must have their local Redmine account in order
+to log in, and their login name must match the credentials from the container
+authentication, since this plugin does not (yet) handle automatic registration.
+
+
+Installation
+=======
+
+Use the following command in your Redmine instance directory:
+
+# ruby script/plugin install http://github.com/AdamLantos/redmine_http_auth.git
+
+
+Known issues
+=======
+
+If you encounter "uninitialized constant Rails::Plugin::ApplicationController"
+exception with any Redmine version prior to Redmine-0.9, just rename your
+app/controllers/application.rb to app/controllers/application_controller.rb.
+
+
+Planned features
+=======
+
+- configurable account mapping (ie. use any environment variable and look
+  up users by login name or email address)
+- automatic registration of accounts
+- option to disable form-based login for users when the plugin is activated
+
 
 
 Copyright (c) 2010 Adam Lantos, released under the MIT license
