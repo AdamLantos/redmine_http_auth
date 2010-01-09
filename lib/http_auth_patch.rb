@@ -15,16 +15,36 @@ module HTTPAuthPatch
       #first proceed with redmine's version of finding current user
       user = find_current_user_without_httpauth
       remote_username = request.env["REMOTE_USER"]
-      #log out current user if remote_username is unset
       if remote_username.nil?
-        logged_user = nil
+        #do not touch user, if he didn't use http authentication to log in
+        return user unless used_http_authentication?
+        #log out previously authenticated user
+        do_logout
         return nil
       end
       #log out current logged in user if the usernames do not match
-      logged_user = nil if user && user.login != remote_username
-
+      if user && user.login != remote_username
+        do_logout
+      end
       #find user by login name
-      User.active.find_by_login remote_username
+      user = User.active.find_by_login remote_username
+      #set http_authentication flag if a user was found
+      mark_http_authentication unless user.nil?
+      
+      return user
+    end
+
+    def mark_http_authentication
+      session[:http_authentication] = true
+    end
+
+    def do_logout
+      session[:http_authentication] = nil
+      logged_user = nil;
+    end
+
+    def used_http_authentication?
+      session[:http_authentication] == true
     end
   end
 end
