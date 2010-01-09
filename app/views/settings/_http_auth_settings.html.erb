@@ -1,0 +1,18 @@
+<p>
+  <%=content_tag(:label, l(:label_enable_http_auth))%>
+  <%=check_box_tag 'settings[enable]', true, @settings['enable'] %>
+</p>
+
+<p>
+  <%=content_tag(:label, l(:label_server_env_var)) %>
+  <%=text_field_tag 'settings[server_env_var]', @settings['server_env_var'] %><br/>
+  (<%=l(:label_default)%>: REMOTE_USER)
+</p>
+
+<p>
+  <%=content_tag(:label, l(:label_lookup_mode))%>
+  <%=radio_button_tag 'settings[lookup_mode]', 'login', @settings['lookup_mode'] == 'login'  %>
+  <%=l(:label_login_name)%><br/>
+  <%=radio_button_tag 'settings[lookup_mode]', 'email', @settings['lookup_mode'] == 'email'  %>
+  <%=l(:label_email_address)%>
+</p>

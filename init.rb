@@ -7,7 +7,14 @@ Redmine::Plugin.register :http_auth do
   author 'Adam Lantos'
   url "http://github.com/AdamLantos/redmine_http_auth" if respond_to?(:url)
   description 'A plugin for doing HTTP authentication'
-  version '0.1'
+  version '0.2'
+
+  settings :partial => 'settings/http_auth_settings',
+    :default => {
+      'enable' => 'true',
+      'server_env_var' => 'REMOTE_USER',
+      'lookup_mode' => 'login'
+    }
 end
 
 Dispatcher.to_prepare do
