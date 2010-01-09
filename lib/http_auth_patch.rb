@@ -14,7 +14,10 @@ module HTTPAuthPatch
     def find_current_user_with_httpauth
       #first proceed with redmine's version of finding current user
       user = find_current_user_without_httpauth
-      remote_username = request.env["REMOTE_USER"]
+      #if the http_auth is disabled in config, return the user
+      return user unless Setting.plugin_http_auth['enable'] == "true"
+
+      remote_username = request.env[Setting.plugin_http_auth['server_env_var']]
       if remote_username.nil?
         #do not touch user, if he didn't use http authentication to log in
         return user unless used_http_authentication?
