@@ -1,13 +1,8 @@
 HTTP Authentication plugin for Redmine
 =======
 
-Introduction goes here.
-
-
-Example
-=======
-
-Example goes here.
+This plugin enables an optional HTTP Authentication method in the
+redmine project management tool.
 
 
 Copyright (c) 2010 Adam Lantos, released under the MIT license
