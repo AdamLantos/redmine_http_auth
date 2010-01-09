@@ -19,8 +19,9 @@ Important notes
 =======
 
 Please note that your users must have their local Redmine account in order
-to log in, and their login name must match the credentials from the container
-authentication, since this plugin does not (yet) handle automatic registration.
+to log in, and their login name / email address must match the credentials from
+the container authentication, since this plugin does not (yet) handle automatic
+registration.
 
 
 Installation
@@ -29,6 +30,18 @@ Installation
 Use the following command in your Redmine instance directory:
 
 # ruby script/plugin install http://github.com/AdamLantos/redmine_http_auth.git
+
+
+Settings
+=======
+
+The behavior of this plugin can be customized through the 'settings' page in the
+plugins menu. Currently there are three options:
+
+- enable / disable HTTP Authentication (default: enable)
+- set the header / environment value to look for (default: REMOTE_USER)
+- change local user lookup mode from login name to email address
+  (default: login name)
 
 
 Known issues
@@ -42,11 +55,9 @@ app/controllers/application.rb to app/controllers/application_controller.rb.
 Planned features
 =======
 
-- configurable account mapping (ie. use any environment variable and look
-  up users by login name or email address)
 - automatic registration of accounts
 - option to disable form-based login for users when the plugin is activated
+- integration with the custom features of various SSO systems (eg. Shibboleth)
 
 
-
-Copyright (c) 2010 Adam Lantos, released under the MIT license
+Copyright (c) 2010 NIIF Institute and Adam Lantos, released under the MIT license
