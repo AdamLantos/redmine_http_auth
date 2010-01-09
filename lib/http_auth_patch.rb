@@ -25,14 +25,20 @@ module HTTPAuthPatch
         do_logout
         return nil
       end
-      #log out current logged in user if the usernames do not match
-      if user && user.login != remote_username
-        do_logout
+
+      #return if the user has not been changed behind the session
+      return user unless session_changed? user, remote_username
+
+      #log out current logged in user
+      do_logout
+      #find user by login name or email address
+      if use_email?
+        user = User.active.find_by_mail remote_username
+      else
+        user = User.active.find_by_login remote_username
       end
-      #find user by login name
-      user = User.active.find_by_login remote_username
-      #set http_authentication flag if a user was found
-      mark_http_authentication unless user.nil?
+      #login and set http_authentication flag if a user was found
+      ((self.logged_user = user) && mark_http_authentication) unless user.nil?
       
       return user
     end
@@ -43,11 +49,23 @@ module HTTPAuthPatch
 
     def do_logout
       session[:http_authentication] = nil
-      logged_user = nil;
+      self.logged_user = nil;
     end
 
     def used_http_authentication?
       session[:http_authentication] == true
+    end
+
+    def use_email?
+      Setting.plugin_http_auth['lookup_mode'] == 'email'
+    end
+
+    def session_changed?(user, remote_username)
+      if user.nil?
+        true
+      else
+        use_email? ? user.mail == remote_username : user.login == remote_username
+      end
     end
   end
 end
