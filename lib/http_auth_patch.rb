@@ -22,7 +22,7 @@ module HTTPAuthPatch
         #do not touch user, if he didn't use http authentication to log in
         return user unless used_http_authentication?
         #log out previously authenticated user
-        do_logout
+        reset_session
         return nil
       end
 
@@ -30,26 +30,19 @@ module HTTPAuthPatch
       return user unless session_changed? user, remote_username
 
       #log out current logged in user
-      do_logout
+      reset_session
+      try_login remote_username
+    end
+
+    def try_login(remote_username)
       #find user by login name or email address
       if use_email?
         user = User.active.find_by_mail remote_username
       else
         user = User.active.find_by_login remote_username
       end
-      #login and set http_authentication flag if a user was found
-      ((self.logged_user = user) && mark_http_authentication) unless user.nil?
-      
-      return user
-    end
-
-    def mark_http_authentication
-      session[:http_authentication] = true
-    end
-
-    def do_logout
-      session[:http_authentication] = nil
-      self.logged_user = nil;
+      #login and return user if user was found
+      do_login user unless user.nil?
     end
 
     def used_http_authentication?
@@ -65,6 +58,14 @@ module HTTPAuthPatch
         true
       else
         use_email? ? user.mail == remote_username : user.login == remote_username
+      end
+    end
+
+    def do_login(user)
+      if (user && user.is_a?(User))
+        session[:user_id] = user.id
+        session[:http_authentication] = true
+        User.current = user
       end
     end
   end
