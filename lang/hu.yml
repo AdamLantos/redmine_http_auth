@@ -1,0 +1,7 @@
+# Magyar fordítások
+label_enable_http_auth: HTTP autentikáció engedélyezése
+label_server_env_var: Beléptetésre felhasznált környezeti változó
+label_default: alapértelmezett
+label_lookup_mode: Helyi felhasználó megkeresése
+label_login_name: felhasználónév alapján
+label_email_address: e-mail cím alapján
