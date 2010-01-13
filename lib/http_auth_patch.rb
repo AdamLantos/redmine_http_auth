@@ -50,7 +50,7 @@ module HTTPAuthPatch
     end
 
     def use_email?
-      Setting.plugin_http_auth['lookup_mode'] == 'email'
+      Setting.plugin_http_auth['lookup_mode'] == 'mail'
     end
 
     def session_changed?(user, remote_username)

@@ -13,6 +13,6 @@
   <%=content_tag(:label, l(:label_lookup_mode))%>
   <%=radio_button_tag 'settings[lookup_mode]', 'login', @settings['lookup_mode'] == 'login'  %>
   <%=l(:label_login_name)%><br/>
-  <%=radio_button_tag 'settings[lookup_mode]', 'email', @settings['lookup_mode'] == 'email'  %>
+  <%=radio_button_tag 'settings[lookup_mode]', 'mail', @settings['lookup_mode'] == 'mail'  %>
   <%=l(:label_email_address)%>
 </p>
