@@ -7,7 +7,7 @@ Redmine::Plugin.register :http_auth do
   author 'Adam Lantos'
   url 'http://github.com/AdamLantos/redmine_http_auth' if respond_to?(:url)
   description 'A plugin for doing HTTP authentication'
-  version '0.2.1'
+  version '0.3.0-dev'
 
   settings :partial => 'settings/http_auth_settings',
     :default => {

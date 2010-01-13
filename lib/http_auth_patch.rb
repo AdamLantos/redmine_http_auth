@@ -57,7 +57,7 @@ module HTTPAuthPatch
       if user.nil?
         true
       else
-        use_email? ? user.mail == remote_username : user.login == remote_username
+        use_email? ? user.mail != remote_username : user.login != remote_username
       end
     end
 
