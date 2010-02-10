@@ -6,3 +6,5 @@ hu:
   label_lookup_mode: Helyi felhasználó megkeresése
   label_login_name: felhasználónév alapján
   label_email_address: e-mail cím alapján
+  login_httpauth_title: Bejelentkezés HTTP-Auth-tal
+

@@ -5,3 +5,5 @@ label_default: default
 label_lookup_mode: Local user lookup mode
 label_login_name: login name
 label_email_address: email address
+login_httpauth_title: Sign in via HTTP-Auth
+
