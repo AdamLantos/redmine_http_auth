@@ -11,13 +11,15 @@ module HTTPAuthPatch
   end
 
   module ClassMethods
+    include HttpAuthHelper
+
     def find_current_user_with_httpauth
       #first proceed with redmine's version of finding current user
       user = find_current_user_without_httpauth
       #if the http_auth is disabled in config, return the user
       return user unless Setting.plugin_http_auth['enable'] == "true"
 
-      remote_username = request.env[Setting.plugin_http_auth['server_env_var']]
+      remote_username = remote_user
       if remote_username.nil?
         #do not touch user, if he didn't use http authentication to log in
         return user unless used_http_authentication?
@@ -41,8 +43,12 @@ module HTTPAuthPatch
       else
         user = User.active.find_by_login remote_username
       end
-      #login and return user if user was found
-      do_login user unless user.nil?
+      if user.nil?
+        redirect_to httpauthselfregister_url
+      else
+        #login and return user if user was found
+        do_login user
+      end
     end
 
     def used_http_authentication?

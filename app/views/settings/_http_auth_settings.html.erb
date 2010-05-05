@@ -16,3 +16,8 @@
   <%=radio_button_tag 'settings[lookup_mode]', 'mail', @settings['lookup_mode'] == 'mail'  %>
   <%=l(:label_email_address)%>
 </p>
+
+<p>
+  <%=content_tag(:label, l(:label_enable_auto_registration))%>
+  <%=check_box_tag 'settings[auto_registration]', true, @settings['auto_registration'] %>
+</p>

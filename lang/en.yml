@@ -6,4 +6,7 @@ label_lookup_mode: Local user lookup mode
 label_login_name: login name
 label_email_address: email address
 login_httpauth_title: Sign in via HTTP-Auth
-
+label_enable_auto_registration: Automatic registration
+label_autoregister: Registration
+error_autoregistration_disabled: Automatic registration is disabled
+error_remote_user_unset: Username is not provided

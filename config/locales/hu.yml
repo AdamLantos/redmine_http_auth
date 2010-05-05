@@ -7,4 +7,7 @@ hu:
   label_login_name: felhasználónév alapján
   label_email_address: e-mail cím alapján
   login_httpauth_title: Bejelentkezés HTTP-Auth-tal
-
+  label_enable_auto_registration: Automatikus regisztráció
+  label_autoregister: Regisztráció
+  error_autoregistration_disabled: Az automatikus regisztráció nincs engedélyezve
+  error_remote_user_unset: A felhasználónév nem elérhető
