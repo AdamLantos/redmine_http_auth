@@ -1,4 +1,6 @@
 module HTTPAuthPatch
+  unloadable
+  
   def self.included(base)
     base.send(:include, ClassMethods)
     base.class_eval do

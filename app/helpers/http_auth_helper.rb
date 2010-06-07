@@ -1,4 +1,6 @@
 module HttpAuthHelper
+  unloadable
+  
   def user_attributes
     ['login', 'mail', 'firstname', 'lastname']
   end
