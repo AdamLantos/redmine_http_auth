@@ -1,4 +1,5 @@
 class RegistrationController < ApplicationController
+  unloadable
   skip_before_filter :user_setup, :check_if_login_required
   include HttpAuthHelper
   helper :http_auth
