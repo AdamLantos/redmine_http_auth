@@ -10,3 +10,4 @@ label_enable_auto_registration: Automatikus regisztráció
 label_autoregister: Regisztráció
 error_autoregistration_disabled: Az automatikus regisztráció nincs engedélyezve
 error_remote_user_unset: A felhasználónév nem elérhető
+error_unknown_user: A felhasználó nem található az adatbázisban

@@ -48,6 +48,7 @@ module HTTPAuthPatch
         if Setting.plugin_http_auth['auto_registration'] == 'true'
           redirect_to httpauthselfregister_url
         else
+          flash[:error] = l :error_unknown_user
           return nil
         end
       else
