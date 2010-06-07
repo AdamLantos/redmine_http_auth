@@ -44,7 +44,12 @@ module HTTPAuthPatch
         user = User.active.find_by_login remote_username
       end
       if user.nil?
-        redirect_to httpauthselfregister_url
+        #user was not found in the database, try selfregistration if enabled
+        if Setting.plugin_http_auth['auto_registration'] == 'true'
+          redirect_to httpauthselfregister_url
+        else
+          return nil
+        end
       else
         #login and return user if user was found
         do_login user
