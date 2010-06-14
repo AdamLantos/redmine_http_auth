@@ -22,7 +22,7 @@ module HttpAuthHelper
   end
 
   def remote_user
-    request.env[Setting.plugin_http_auth['env_var']]
+    request.env[Setting.plugin_http_auth['server_env_var']]
   end
 
   def readonly_attribute?(attribute_name)
