@@ -17,6 +17,7 @@ Redmine::Plugin.register :http_auth do
       'enable' => 'true',
       'server_env_var' => 'REMOTE_USER',
       'lookup_mode' => 'login',
+      'auto_registration' => 'false',
       'keep_sessions' => 'false'
     }
 end
