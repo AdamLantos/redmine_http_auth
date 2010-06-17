@@ -11,3 +11,4 @@ label_autoregister: Registration
 error_autoregistration_disabled: Automatic registration is disabled
 error_remote_user_unset: Username is not provided
 error_unknown_user: User was not found in the database
+label_keep_sessions: Keep redmine sessions open after HTTP authentication lost (dangerous!)

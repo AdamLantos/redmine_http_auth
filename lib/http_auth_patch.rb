@@ -24,7 +24,10 @@ module HTTPAuthPatch
       remote_username = remote_user
       if remote_username.nil?
         #do not touch user, if he didn't use http authentication to log in
-        return user unless used_http_authentication?
+        #or if the keep_sessions configuration directive is set
+        if !used_http_authentication? || Setting.plugin_http_auth['keep_sessions'] == "true"
+          return user
+        end
         #log out previously authenticated user
         reset_session
         return nil

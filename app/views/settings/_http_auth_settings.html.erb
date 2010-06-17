@@ -21,3 +21,8 @@
   <%=content_tag(:label, l(:label_enable_auto_registration))%>
   <%=check_box_tag 'settings[auto_registration]', true, @settings['auto_registration'] %>
 </p>
+
+<p>
+  <%=content_tag(:label, l(:label_enable_keep_sessions))%>
+  <%=check_box_tag 'settings[keep_sessions]', true, @settings['keep_sessions'] %>
+</p>

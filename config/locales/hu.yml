@@ -12,3 +12,4 @@ hu:
   error_autoregistration_disabled: Az automatikus regisztráció nincs engedélyezve
   error_remote_user_unset: A felhasználónév nem elérhető
   error_unknown_user: A felhasználó nem található az adatbázisban
+  label_keep_sessions: Redmine munkamenet megtartása a HTTP authentikációs információ megszűnése után (veszélyes!)
