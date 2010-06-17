@@ -1,6 +1,6 @@
 <p>
   <%=content_tag(:label, l(:label_enable_http_auth))%>
-  <%=check_box_tag 'settings[enable]', true, @settings['enable'] %>
+  <%=check_box_tag 'settings[enable]', true, @settings['enable'] == "true" %>
 </p>
 
 <p>
@@ -19,10 +19,10 @@
 
 <p>
   <%=content_tag(:label, l(:label_enable_auto_registration))%>
-  <%=check_box_tag 'settings[auto_registration]', true, @settings['auto_registration'] %>
+  <%=check_box_tag 'settings[auto_registration]', true, @settings['auto_registration'] == "true" %>
 </p>
 
 <p>
-  <%=content_tag(:label, l(:label_enable_keep_sessions))%>
-  <%=check_box_tag 'settings[keep_sessions]', true, @settings['keep_sessions'] %>
+  <%=content_tag(:label, l(:label_keep_sessions))%>
+  <%=check_box_tag 'settings[keep_sessions]', true, @settings['keep_sessions'] == "true" %>
 </p>
