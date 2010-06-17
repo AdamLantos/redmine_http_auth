@@ -5,23 +5,13 @@ This plugin enables an optional HTTP authentication method in the Redmine
 project management tool.
 
 If the REMOTE_USER server environment variable is set, an attempt is
-made to look up the matching local user account and log in. If the user
-was logged in using HTTP authentication, and the REMOTE_USER gets unset
-(ie. the user was logged out by the container), the user will be logged
-out from their Redmine session, too.
+made to look up the matching local user account and log in. An attempt is made
+to synchronize redmine session with the container managed authentication session,
+but this can be switched off.
 
 This module does not disable the form-based login unless HTTP authentication
 credentials are available, in which case the username from the environment
 will override the form-based login.
-
-
-Important notes
-=======
-
-Please note that your users must have their local Redmine account in order
-to log in, and their login name / email address must match the credentials from
-the container authentication, since this plugin does not (yet) handle automatic
-registration.
 
 
 Installation
@@ -42,6 +32,8 @@ plugins menu. Currently there are three options:
 - set the header / environment value to look for (default: REMOTE_USER)
 - change local user lookup mode from login name to email address
   (default: login name)
+- enable / disable automatic registration (default: disable), see below
+- enable / disable the "keep session" behavior (default: disable), see below
 
 
 Known issues
@@ -52,10 +44,55 @@ exception with any Redmine version prior to Redmine-0.9, just rename your
 app/controllers/application.rb to app/controllers/application_controller.rb.
 
 
+Automatic registration of user accounts
+=======
+
+If a user doesn't exist in the redmine local database, the http_authentication
+plugin can automatically create an account for them. This automatic registration
+currently presents a form to the user where additional attributes (like email
+address, first name or last name) should be entered.
+
+The plugin currently doesn't handle automatic attribute transformation from the
+authentication environment (eg. Shibboleth session), but it does enforce the
+lookup attribute matching with the environment.
+
+Automatically registered accounts don't have associated passwords, but the
+user can change their password via the common password change form.
+
+
+Session synchronization
+=======
+
+When using container managed authentication (like SSO systems), one needs to
+ensure, that the currently logged-on user is the same which initiated the session.
+Additionally, there is a need to offer logout functionality to the end user.
+
+By default, the http_authentication plugin synchronizes the container managed
+authentication session to the redmine session. This means that if the underlying
+session changes or ends, the redmine session changes and ends as well.
+
+
+Using lazy authentication
+=======
+
+The http_authentication plugin provides a top menu link for lazy, user-requested
+authentication purposes. This link points to the `/httpauth-login` URL. If you
+want to enable both http_authentication and normal form-based logins, you need
+to use this link to enforce container authentication.
+
+However, many authentication mechanisms (namely apache httpd mod_auth_basic)
+don't offer a way to do lazy authentication. If an URL is not "enforced", the
+authorization information (eg. REMOTE_USER) is not populated. Thus, the session
+synchronization code will invalidate user sessions outside the protected realm.
+
+You can alter this behavior by switching on the "keep sessions" setting. But
+please consider that this might be dangerous. Do not use this feature if you
+are implementing SSO systems, you've been warned.
+
+
 Planned features
 =======
 
-- automatic registration of accounts
 - option to disable form-based login for users when the plugin is activated
 - integration with the custom features of various SSO systems (eg. Shibboleth)
 
