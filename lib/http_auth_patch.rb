@@ -52,6 +52,7 @@ module HTTPAuthPatch
         #user was not found in the database, try selfregistration if enabled
         if Setting.plugin_http_auth['auto_registration'] == 'true'
           redirect_to httpauthselfregister_url
+          return nil
         else
           flash[:error] = l :error_unknown_user
           return nil
@@ -83,6 +84,8 @@ module HTTPAuthPatch
         session[:user_id] = user.id
         session[:http_authentication] = true
         User.current = user
+      else
+        return nil
       end
     end
   end
