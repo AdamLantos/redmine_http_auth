@@ -19,13 +19,13 @@ module HTTPAuthPatch
       #first proceed with redmine's version of finding current user
       user = find_current_user_without_httpauth
       #if the http_auth is disabled in config, return the user
-      return user unless Setting.plugin_http_auth['enable'] == "true"
+      return user unless Setting.plugin_redmine_http_auth['enable'] == "true"
 
       remote_username = remote_user
       if remote_username.nil?
         #do not touch user, if he didn't use http authentication to log in
         #or if the keep_sessions configuration directive is set
-        if !used_http_authentication? || Setting.plugin_http_auth['keep_sessions'] == "true"
+        if !used_http_authentication? || Setting.plugin_redmine_http_auth['keep_sessions'] == "true"
           return user
         end
         #log out previously authenticated user
@@ -50,7 +50,7 @@ module HTTPAuthPatch
       end
       if user.nil?
         #user was not found in the database, try selfregistration if enabled
-        if Setting.plugin_http_auth['auto_registration'] == 'true'
+        if Setting.plugin_redmine_http_auth['auto_registration'] == 'true'
           redirect_to httpauthselfregister_url
           return nil
         else
@@ -68,7 +68,7 @@ module HTTPAuthPatch
     end
 
     def use_email?
-      Setting.plugin_http_auth['lookup_mode'] == 'mail'
+      Setting.plugin_redmine_http_auth['lookup_mode'] == 'mail'
     end
 
     def session_changed?(user, remote_username)

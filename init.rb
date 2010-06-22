@@ -2,7 +2,7 @@ require 'redmine'
 require 'dispatcher'
 require 'http_auth_patch'
  
-Redmine::Plugin.register :http_auth do
+Redmine::Plugin.register :redmine_http_auth do
   name 'HTTP Authentication plugin'
   author 'Adam Lantos'
   url 'http://github.com/AdamLantos/redmine_http_auth' if respond_to?(:url)
@@ -10,9 +10,9 @@ Redmine::Plugin.register :http_auth do
   version '0.3.0-dev'
   menu :account_menu, :login_httpauth, { :controller => 'httpauth-login' }, 
     :before => :login, :caption => :login_httpauth_title,
-    :if => Proc.new { User.current.anonymous? && Setting.plugin_http_auth['enable'] == 'true' }
+    :if => Proc.new { User.current.anonymous? && Setting.plugin_redmine_http_auth['enable'] == 'true' }
 
-  settings :partial => 'settings/http_auth_settings',
+  settings :partial => 'settings/redmine_http_auth_settings',
     :default => {
       'enable' => 'true',
       'server_env_var' => 'REMOTE_USER',

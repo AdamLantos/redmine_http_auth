@@ -22,7 +22,7 @@ class RegistrationController < ApplicationController
 
   def autoregistration_enabled
     unless Setting.
-      plugin_http_auth['auto_registration'] == "true"
+      plugin_redmine_http_auth['auto_registration'] == "true"
 
       flash[:error] = l :error_autoregistration_disabled
       redirect_to home_url
