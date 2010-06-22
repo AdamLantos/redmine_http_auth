@@ -12,6 +12,7 @@ class RegistrationController < ApplicationController
 
   def register
     @user = User.new params[:user]
+    @user.login = params[:user][:login] if use_email?
     set_readonly_attributes @user
     if @user.save
       redirect_to home_url
