@@ -1,0 +1,14 @@
+# Japanese translation by Akiko Takano
+label_enable_http_auth: HTTP認証を有効にする
+label_server_env_var: サーバの環境変数名 
+label_default: デフォルト 
+label_lookup_mode: ローカルユーザの検索モード 
+label_login_name: ログイン名 
+label_email_address: メールアドレス 
+login_httpauth_title: HTTP認証でログイン
+label_enable_auto_registration: 自動登録 
+label_autoregister: 登録 
+error_autoregistration_disabled: 自動登録を無効にする 
+error_remote_user_unset: ユーザ名が設定されていません 
+error_unknown_user: データベースに該当するユーザが存在しません
+label_keep_sessions: HTTP認証が切れたあともRedmineのセッションを継続させる (危険です!)
