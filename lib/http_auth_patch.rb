@@ -83,6 +83,7 @@ module HTTPAuthPatch
       if (user && user.is_a?(User))
         session[:user_id] = user.id
         session[:http_authentication] = true
+        user.update_attribute(:last_login_on, Time.now)
         User.current = user
       else
         return nil
