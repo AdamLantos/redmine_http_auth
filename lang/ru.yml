@@ -1,0 +1,14 @@
+# Russian strings
+label_enable_http_auth: Включить HTTP Authentication
+label_server_env_var: Имя серверной переменной окружения
+label_default: по умолчанию
+label_lookup_mode: Способ поиска пользователя
+label_login_name: имя пользователя
+label_email_address: адрес электронной почты
+login_httpauth_title: Входить через HTTP-Auth
+label_enable_auto_registration: Автоматическая регистрация
+label_autoregister: Регистрация
+error_autoregistration_disabled: Автоматическая регистрация отключена
+error_remote_user_unset: Имя пользователя не указано
+error_unknown_user: Пользователь не найден в базе данных
+label_keep_sessions: Оставлять сессии redmine открытыми после потери HTTP authentication (опасно!)
