@@ -1,0 +1,16 @@
+# German strings
+de:
+  label_enable_http_auth: HTTP Authentifizierung aktivieren
+  label_server_env_var: Name für die Umgebungsvariable des Server
+  label_default: Standard
+  label_lookup_mode: Lokaler Lookup Modus
+  label_login_name: Login Name
+  label_email_address: Email Addresse
+  login_httpauth_title: via HTTP-Authentifizierung einloggen
+  label_enable_auto_registration: Automatische  Registrierung
+  label_autoregister: Registrierung
+  error_autoregistration_disabled: Automatische  Registrierung ist deaktiviert
+  error_remote_user_unset: Benutzername wurde nicht angegeben
+  error_unknown_user: Benutzer konnte nicht gefunden werden
+  label_keep_sessions: Verbindung aufrecht erhalten nachdem die HTTP Authentifizierung abgelaufen ist (sicherheitskritisch und nicht empfohlen!)
+
