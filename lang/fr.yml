@@ -1,0 +1,14 @@
+# French strings
+label_enable_http_auth: Activer l'authentification HTTP
+label_server_env_var: Nom de la variable d'environnement serveur
+label_default: défaut
+label_lookup_mode: Mode de recherche de l'utilisateur
+label_login_name: nom d'utilisateur
+label_email_address: adresse e-mail
+login_httpauth_title: Connexion via HTTP-Auth
+label_enable_auto_registration: Création de compte automatique
+label_autoregister: Création de compte
+error_autoregistration_disabled: La création de comtpe automatique est désactivée
+error_remote_user_unset: Le nom d'utilisateur n'a pas été fourni
+error_unknown_user: L'utilisateur n'a pas été trouvé dans la base de données
+label_keep_sessions: Garder les sessions Redmine ouvertes même après la perte de l'authentification HTTP (dangereux !)
