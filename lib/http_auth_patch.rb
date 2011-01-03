@@ -75,7 +75,7 @@ module HTTPAuthPatch
       if user.nil?
         true
       else
-        use_email? ? user.mail != remote_username : user.login != remote_username
+        use_email? ? user.mail.casecmp(remote_username) != 0 : user.login.casecmp(remote_username) != 0
       end
     end
 
