@@ -1,0 +1,14 @@
+# Brazilian Portuguese strings
+label_enable_http_auth: Habilitar Autenticação HTTP
+label_server_env_var: Nome da variável de ambiente
+label_default: padrão
+label_lookup_mode: Modo de validação local de usuário
+label_login_name: login
+label_email_address: endereço de e-mail
+login_httpauth_title: Autenticação via HTTP
+label_enable_auto_registration: Registro automático
+label_autoregister: Registro
+error_autoregistration_disabled: Registro automático está desabilitado
+error_remote_user_unset: Nome de usuário não informado
+error_unknown_user: Usuário não encontrado na base de usuários
+label_keep_sessions: Manter sessões do redmine ativas após a perda da autenticação HTTP (Muito perigoso)
